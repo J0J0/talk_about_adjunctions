@@ -1,0 +1,126 @@
+\chapter{Erinnerung und Beispiele}
+Aus dem letzten Vortrag (siehe Loher\cite{talk:loher}) kennen wir das Konzept
+\emph{adjungierter Funktoren}. Der Vollständigkeit halber besprechen wir noch
+einmal knapp die verschiedenen Definitionsmöglichkeiten für Adjunktionen, welche
+wir im Folgenden benutzen wollen.
+
+\begin{thErinnerung}[Hom-Funktor(en)]
+    Sei $\catA$ eine Kategorie. Dann ist $\catA(\blank,\blank)$ ein Funktor
+    $\catA\op\times\catA\to\Set$, gegeben auf Objekten durch die offensichtliche
+    Art und Weise und auf Morphismen wie folgt: seien $(A,B),(A',B')$ Objekte
+    in $\catA\op\times\catA$ und sei $(f\op,g)\colon (A,B)\to (A',B')$ ein 
+    Morphismus zwischen diesen, dann gilt:
+    \[ \catA(f\op,g)\colon \catA(A,B)\to \catA(A',B'), \quad 
+        h\mapsto g\after h\after f
+    . \]
+    Fixieren wir ein Objekt~$A\in\catA$, so ist
+    also $\catA(A,\blank)$ ein kovarianter Funktor $\catA\to\Set$
+    und $\catA(\blank,A)$ ein kontravarianter Funktor $\catA\to\Set$.
+\end{thErinnerung}
+
+\begin{thErinnerDef}[Adjungierte Funktoren, Adjunktion]
+    Seien $F\colon \cat A\to\cat B$ und $G\colon \cat B\to \cat A$
+    Funktoren zwischen Kategorien $\cat A, \cat B$. Wir nennen
+    $F$ \emph{linksadjungiert zu $G$} und $G$ \emph{rechtsadjungiert zu $F$},
+    wenn eine beiden folgenden äquivalenten Bedingungen erfüllt ist:
+
+    \begin{description}
+        \item[Morphismenmengen-Adjunktion]\hfill\\
+            Es existiert ein natürlicher Isomorphismus 
+            \[ \phi\colon \catB(F\blank,\blank)
+                \nattrafoto \catA(\blank,G\blank)
+            \]
+            zwischen den Funktoren
+            \begin{align*}
+                \catB(\blank,\blank)\after(F\op\times\Id_\catB)&\colon
+                \catA\op\times\catB\to\Set 
+                \qquad\text{und}\\
+                \catA(\blank,\blank)\after(\Id_\catA\op\times G)&\colon
+                \catA\op\times\catB\to\Set
+            . \end{align*}
+            Wir beschreiben diese Situation auch wie folgt: Für alle Objekte
+            $A\in\catA,\,B\in\catB$ ist
+            \[ \phi_{A,B}\colon \catB(FA,B)\isorightarrow\catA(A,GB) \] 
+            eine Bijektion und diese ist \emph{natürlich in $A$ und $B$}.
+
+        \item[Einheit-Koeinheit-Adjunktion]\hfill\\
+            Es existieren natürliche Transformationen
+            \[  \eta\colon \Id_\catA \nattrafoto GF  \qundq
+                \epsilon\colon FG \nattrafoto \Id_\catB 
+             \]
+            mit $\epsilon F \after F\eta = \id_F$ und 
+            $G\epsilon \after \eta G = \id_G$ (\emph{Dreiecksidentitäten}, siehe
+            \cref{ch1:fig:dreiecksid}). Wir nennen dann $\eta$ die
+            \emph{Einheit} und $\epsilon$ die \emph{Koeinheit} der Adjunktion.
+            %
+            \begin{figure}
+                \begin{equation*}
+                    \begin{gathered} % treats vertical alignment
+                        \xymatrix{
+                            F \ar[r]^-{F\eta} \ar[dr]_-{\id_F} 
+                            & FGF \ar[d]^(.43){\epsilon F}
+                            \\ & F
+                        }
+                    \end{gathered}
+                    \hspace{1.2cm}
+                    \begin{gathered}
+                        \xymatrix{
+                            G \ar[r]^-{\eta G} \ar[dr]_-{\id_G} 
+                            & GFG \ar[d]^(.43){G\epsilon}
+                            \\ & G
+                        }
+                    \end{gathered}
+                \end{equation*}
+                \caption{Dreiecksidentitäten für Einheit und Koeinheit}
+                \label{ch1:fig:dreiecksid}
+            \end{figure}
+    \end{description}
+    
+    \noindent
+    Wir nennen
+    \begin{itemize}
+        \item 
+            im ersteren Fall ein Tripel $(F,G,\phi)$,
+        \item
+            im zweiteren Fall ein Tupel $(F,G,\eta,\epsilon)$
+    \end{itemize}
+    eine \emph{Adjunktion}. In beiden Fällen schreiben wir $F\leftadjoint G$.
+\end{thErinnerDef}
+
+Einen Beweis für die Äquivalenz der Bedingungen findet man bei
+Loher\cite{talk:loher} oder in einem beliebigen Buch zur Kategorientheorie.
+Auch einige Beispiele wie  
+\enquote{Frei $\leftadjoint$ Vergiss}, \enquote{Produkt $\leftadjoint$ Exponential}
+oder \enquote{Tensor $\leftadjoint$ Hom} haben wir schon bei 
+Loher\cite[1.3,\;1.4,\;2.8]{talk:loher} gesehen. Wir betrachten zunächst weitere
+Beispiele, bevor wir allgemeine Eigenschaften von Adjunktionen näher
+untersuchen.
+
+\begin{thBeispiel}[Vergissfunktor auf \texorpdfstring{$\Top$}{Top}]
+    Sei $U\colon\Top\to\Set$ der Vergissfunktor, der einem topologischen Raum
+    seine unterliegende Menge zuordnet. Seien weiter $D,K\colon\Set\to\Top$ die
+    Funktoren, die eine Menge mit der diskreten bzw. der
+    Klumpentopologie\footnote{auch indiskrete oder chaotische Topologie genannt}
+    ausstatten und so zu einem topologischen Raum machen. Alle drei Funktoren
+    bilden Morphismen auf sich selbst\footnote{streng genommen: auf dieselbe
+    Abbildung als Morphismus in der jeweils anderen Kategorie} ab.
+    Sei $(Y,T)$ ein topologischer Raum und seien $(X,T_D)$ bzw. $(Z,T_K)$
+    topologische Räume mit der diskreten bzw. der Klumpentopologie. Dann gilt
+    \[  \Top\bigl( (X,T_D), (Y,T) \bigr) = \Set(X,Y)  \qundq
+        \Top\bigl( (Y,T), (Z,T_D) \bigr) = \Set(X,Y)
+    , \]
+    denn jede Abbildung aus einem Raum mit der diskreten Topologie und jede
+    Abbildung in einen Raum mit der Klumpentopologie ist stetig. Dies zeigt,
+    dass die Funktoren $D,K$ auf Morphismen wohldefiniert sind. Wir behaupten
+    nun, dass wir eine Kette von Adjunktionen $D\leftadjoint U\leftadjoint K$
+    haben. Dies lässt leicht überprüfen, denn es gilt für alle Mengen~$Y$ und
+    alle topologischen Räume $(X,T)$:
+    \begin{alignat*}{2}
+        \Top\bigl( DY, (X,T) \bigr) &= \Set(Y,X) &&= \Set\bigl( Y, U(X,T)\bigr)
+        \quad\text{und}\\
+        \Set\bigl( U(X,T), Y \bigr) &= \Set(X,Y) &&= \Top\bigl( (X,T), KY \bigr)
+    . \end{alignat*}
+    Also liefern $\phi^D_{Y,(X,T)} \defeq \id_{\Set(Y,X)}$ und 
+    $\phi^K_{(X,T),Y} \defeq \id_{\Set(X,Y)}$ Adjunktionen $(D,U,\phi^D)$
+    und $(U,K,\phi^K)$ (-- die Natürlichkeit ist klar).
+\end{thBeispiel}

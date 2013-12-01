@@ -1,0 +1,61 @@
+\ProvidesPackage{mymathmisc}
+
+% want a shorter command for matrices \dots
+\newcommand*{\Matrix}[1]{%
+\begin{pmatrix} #1 \end{pmatrix}%
+}
+
+% \dots and vectors
+\newcommand{\vect}{}
+\let\vect=\Matrix
+
+% \dots and right aligned matrices
+\newcommand*{\RMatrix}[1]{%
+\begin{pmatrix*}[r] #1 \end{pmatrix*}%
+}
+
+% \dots and smallmatrices
+\newcommand*{\smallmat}[1]{%
+\begin{psmallmatrix} #1 \end{psmallmatrix}%
+}
+\newcommand*{\smallRmat}[1]{%
+    \begin{psmallmatrix*}[r] #1 \end{psmallmatrix*}%
+}
+
+
+%---
+% the following creates an operator norm as a tripple stroke \vert
+% (source: mathabx fonts)
+\DeclareFontFamily{U}{matha}{\hyphenchar\font45}
+\DeclareFontShape{U}{matha}{m}{n}{
+      <5> <6> <7> <8> <9> <10> gen * matha
+      <10.95> matha10 <12> <14.4> <17.28> <20.74> <24.88> matha12
+      }{}
+\DeclareSymbolFont{matha}{U}{matha}{m}{n}
+\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathx}{m}{n}{
+      <5> <6> <7> <8> <9> <10>
+      <10.95> <12> <14.4> <17.28> <20.74> <24.88>
+      mathx10
+      }{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+
+\DeclareMathDelimiter{\vvvert}{0}{matha}{"7E}{mathx}{"17}
+\DeclarePairedDelimiter{\opnorm}{\vvvert}{\vvvert}
+%---
+
+
+% make a \Mid macro as flexible replacement for \mid in set definitions
+\newcommand{\Mid}[1][\;]{%
+#1%
+\ifnum\currentgrouptype=16%
+\middle\vert\else\vert\fi%
+#1%
+}
+
+% \dots and a version for custom size control
+\newcommand{\cMid}[2][\;]{%
+#1#2\vert#1%
+}
+
+
