@@ -13,7 +13,7 @@
 \usepackage{amsthm}
 \usepackage{mathtools}
 \usepackage[all]{xy}
-%\usepackage{tikz}
+\usepackage{tikz}
 
 \usepackage[babel]{csquotes}
 \usepackage[shortlabels]{enumitem}
@@ -83,7 +83,7 @@
 \newtheorem{thDef}[globalnum]{Definition}
 %\newtheorem{thNotation}[globalnum]{Notation}
 \newtheorem{thSatz}[globalnum]{Satz}
-%\newtheorem{thPropos}[globalnum]{Proposition}
+\newtheorem{thProposition}[globalnum]{Proposition}
 \newtheorem{thLemma}[globalnum]{Lemma}
 \newtheorem{thKorollar}[globalnum]{Korollar}
 
@@ -138,6 +138,7 @@
 }
 
 \MakeCategoryName{Ab}
+\MakeCategoryName{Adj}
 \MakeCategoryName{Cat}
 \MakeCategoryName{Group}
 \MakeCategoryName{Met}
@@ -148,6 +149,8 @@
 \MakeCategoryName{Vect}
 \MakeCategoryPseudoName{Ord}
 \MakeCategoryPseudoName{Subgroup}
+
+\DeclareMathOperator{\One}{\mathsf{1}}
 
 \newcommand{\Ord}[1]{\CATOrd_{#1}}
 \newcommand{\Subgroup}[1]{\CATSubgroup_{#1}}
@@ -227,6 +230,20 @@
 \SelectTips{cm}{}
 \UseTips
 
+% make circled chars with tikz
+\newcommand{\circledchar}[2][black]{%
+\tikz[
+    baseline={(B.south)},
+    mysep/.style={
+           inner xsep=0.35pt,
+           inner ysep=0.8pt
+    }
+]{
+    \node[draw=#1,shape=circle,mysep]
+        (N) at (0,0) {\tiny #2};
+    \node [mysep] (B) at (N) {\tiny\phantom{#2}};
+}}
+
 % listing with -- is nicer than with bullets 
 \setlist[itemize,1]{label=--}
 
@@ -242,6 +259,7 @@
 \input{titlepage}
 \input{chap0}
 \input{chap1}
+\input{chap2}
 
 \nocite{lecnotes:leinster}
 \nocite{bookc:maclane97}

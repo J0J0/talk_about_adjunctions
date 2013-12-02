@@ -124,3 +124,63 @@ untersuchen.
     $\phi^K_{(X,T),Y} \defeq \id_{\Set(X,Y)}$ Adjunktionen $(D,U,\phi^D)$
     und $(U,K,\phi^K)$ (-- die Natürlichkeit ist klar).
 \end{thBeispiel}
+
+\pagebreak[2]
+\begin{thBeispiel}[Initiale und terminale Objekte]
+    Sei $\catA$ eine Kategorie und sei $\ast$ das einzige Objekt der
+    Kategorie~$\One$.\footnote{Kategorie mit genau einem Objekt und genau einem
+    Morphismus} Sei weiter $C$ der eindeutig bestimmte Funktor $\catA\to\One$.
+    Dann besitzt $\catA$ genau dann ein terminales Objekt, wenn es einen
+    zu $C$ rechtsadjungierten Funktor gibt, und $\catA$ besitzt genau dann ein
+    initiales Objekt, wenn es einen zu $C$ linksadjungierten Funktor gibt.
+
+    \newcommand{\cA}{\circledchar[black!40]{$A$}}
+    \newcommand{\cX}{\circledchar[black!40]{$X$}}
+    \newcommand{\cY}{\circledchar[black!40]{$Y$}}
+    Wir bemerken zunächst, dass ein Funktor $\One\to\catA$ nichts weiter ist
+    als ein Objekt in $\catA$. Daher schreiben wir im Folgenden einfach
+    $\cA$ für den Funktor $\One\to\catA$, der $\ast$ auf das Objekt~$A$ aus
+    $\catA$ abbildet.
+    
+    Sei $\cX\colon\One\to\catA$ ein Funktor mit $C\leftadjoint\cX$. Ist dann
+    $A\in\catA$ ein Objekt aus $\catA$, so gilt:
+    \[ \One(\ast,\ast) = \One(C\!A,\ast) \cong \catA(A,\cX\ast) = \catA(A,X) . \]
+    Da $\One(\ast,\ast) = \{\id_\ast\}$ genau aus dem Identitätsmorphismus auf
+    $\ast$ besteht, muss es also genau ein Element in $\catA(A,X)$ geben, d.\,h.
+    es gibt genau einen Morphismus $A\to X$. Da $A\in\catA$ beliebig war, ist
+    $X$ also ein terminales Objekt. Analog erhalten wir für einen Funktor
+    $\cY\colon\One\to\catA$ mit $\cY\leftadjoint C$ für alle $A\in\catA$:
+    \[ \catA(Y,A) = \catA(\cY\ast,A) \cong \One(\ast,C\!A) = \One(\ast,\ast) . \]
+    Damit ist $Y$ ein initiales Objekt in $\catA$.
+
+    Sei nun umgekehrt $X$ ein terminales Objekt in $\catA$. Dann gilt
+    $C\leftadjoint\cX$ vermöge der Adjunktion
+    $\bigl(C,\cX, \eta, \epsilon\bigr)$ mit 
+    \[ \eta \defeq (A{\to}X)_{A\in\catA} \qqundqq \epsilon \defeq (\id_\ast)_\ast
+    . \]
+    Die Natürlichkeit von $\epsilon$ ist klar und die von $\eta$ prüfen wir
+    schnell nach: Sei $f\colon A\to A'$ ein Morphismus in $\catA$. Dann müssen
+    wir zeigen, dass das Diagramm 
+    \vspace{-2mm}
+    \[
+        \xymatrix@=3.5mm{A \ar[r]^f \ar[d] & A' \ar[d] \\ X \ar[r] & X}
+    \]
+    kommutiert. Aber da $X$ ein terminales Objekt ist, bleibt diesem Diagramm
+    gar nichts anderes übrig, als zu kommutieren. Wir rechnen außerdem nach,
+    dass $\eta$ und $\epsilon$ die Dreiecksidentitäten erfüllen. 
+    Sei $A\in\catA$. Dann gilt
+    \[ (\epsilon C \after C\eta)_A 
+        = \epsilon_\ast \after C(A{\to}X)
+        = \id_\ast \after \id_\ast
+        = \id_\ast = \id_{C\!A}
+    \]
+    sowie
+    \[ (\cX\mkern1mu\epsilon \after \eta\mkern1mu\cX)_\ast
+        = \cX(\id_\ast) \after \eta_X
+        = \id_X \after (X{\to}X)
+        = \id_X = \id_{\cX\ast}
+    . \]
+    Völlig analog zeigt man, dass für ein initiales Objekt $Y\in\catA$ das Tupel
+    \[ \bigl( \cY,\; C,\; (\id_\ast)_\ast,\; (Y{\to}A)_{A\in\catA} \bigr) \]
+    eine Adjunktion $\cY\leftadjoint C$ definiert.
+\end{thBeispiel}

@@ -1,0 +1,56 @@
+\chapter{Komposition von Adjunktionen}
+Wir wollen nun untersuchen, wie wir Adjunktionen verknüpfen können. Einerseits
+ist es genrell praktisch zu wissen, dass für Kategorien $\catA,\catB,\catC$ und
+Funktoren
+\vspace{-1mm}
+\[ \tag{$\star$} \label{ch2:situation}
+    \xymatrix{ \catA \ar@<3.5pt>[r]^F & \ar@<2pt>[l]^{G\vphantom{\bar G}} \catB 
+    \ar@<3.5pt>[r]^{\bar F} & \ar@<2pt>[l]^{\bar G} \catC
+    }
+    \qquad\text{mit}\quad 
+    F\leftadjoint G \text{\; und \,} \bar F\leftadjoint\bar G
+\]
+auch eine Adjunktion der komponierten Funktoren existiert. Andererseits
+ermöglicht uns diese Feststellung die Betrachtung der Kategorie $\Adj$, wobei
+$\Ob(\Adj)\defeq\Ob(\Cat)$ und $\Adj(\catA,\catB)$ definiert ist als die 
+Menge aller Adjunktionen % TODO: check
+zwischen den kleinen Kategorien $\catA$ und $\catB$;
+die Verknüpfung von Morphismen ist die Komposition von Adjunktionen, die wir 
+gleich besprechen werden, und die naheliegenden Adjunktion des
+Identitätsfunktors zu sich selbst ist der Identitäsmorphimus auf einer kleinen
+Kategorie. Außerdem gibt es eine zusätzliche Struktur auf $\Adj$, die diese
+Kategorie zu einer sogenannten $2$-Kategorie macht. Dies geht jedoch über den
+Inhalt dieses Skripts hinaus, so dass wir an dieser Stelle auf 
+Mac~Lane\cite[\S\,IV.8,\;\S\,XII.3]{bookc:maclane97} und 
+nLab\cite{www:nlab:2category} verweisen.
+
+\begin{thProposition}[Komposition von Adjunktionen]
+    Seien $\catA,\catB$ und $\catC$ Kategorien und seien $F,G,\bar F,\bar G$
+    Funktoren wie in \eqref{ch2:situation}.
+    Dann gilt auch $\bar F F \leftadjoint G\bar G$.
+    %
+    Genauer gilt:
+    \begin{itemize}
+        \item
+            Sind $(F,G,\phi)$ und $(\bar F,\bar G,\bar\phi)$ zugehörige
+            Adjunktionen zu obiger Situation, so ist auch
+            \[ (\bar F F, G\bar G, \tilde\phi) \]  
+            eine Adjunktion, wobei $\tilde\phi$ für alle 
+            $A\in\catA,\; C\in\catC$ gegeben ist durch
+            \[ \tilde\phi_{A,C} \defeq 
+                \phi_{A,\bar GC} \after \bar\phi_{F\!A,C}
+            . \]
+
+        \item
+            Sind $(F,G,\eta,\epsilon)$ und $(\bar F, \bar G, \bar\eta,
+            \bar\epsilon)$ zugehörige Adjunktionen zu obiger Situation, so ist
+            auch
+            \[ (\bar F F, G\bar G, \tilde\eta, \tilde\epsilon) \]
+            eine Adjunktion, wobei $\tilde\eta$ und $\tilde\epsilon$ gegeben
+            sind durch
+            \[ \tilde\eta \defeq \bar G\eta\bar F \after \bar\eta
+                \qqundqq
+                \tilde\epsilon \defeq \epsilon \after F\bar\epsilon G
+            . \]
+    \end{itemize}
+\end{thProposition}
