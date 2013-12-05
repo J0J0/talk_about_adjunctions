@@ -1,0 +1,102 @@
+\chapter{Adjungierte Funktoren erhalten Limiten}
+Wir kommen nun zu einem der wichtigsten Aspekte von Adjunktionen: adjungierte
+Funktoren erhalten (Ko)Limiten. Genauer:
+% TODO ^
+
+\begin{thSatz}[Adjungierte Funktoren erhalten (Ko)Limiten]
+    \label{ch3:rapl}
+    %
+    Seien $\catA,\catB$ Kategorien und $F\colon\catA\to\catB,\;
+    G\colon\catB\to\catA$ Funktoren mit $F\leftadjoint G$.
+    Dann gilt:
+    \begin{itemize}
+        \item
+            Der rechtsadjungierte Funktor~$G$ erhält Limiten.
+        \item
+            Der linksadjungierte Funktor~$F$ erhält Kolimiten.
+    \end{itemize}
+\end{thSatz}
+
+Dies macht deutlich, wie nützlich es für uns ist, wenn wir wissen, dass ein
+Funktor ein rechts- oder linksadjungierter Funktor ist. Insbesondere werden wir
+dies im Folgenden auch an einigen Beispielen erkennen. Davon abgesehen liefert
+\cref{ch3:rapl} aber auch \emph{das Kriterium} schlechthin, um zu zeigen, dass
+ein Funktor keinen links- oder rechtsadjungierten Funktor besitzen kann:
+
+\begin{thKorollar}[Nicht-Existenz adjungierter Funktoren]
+    \label{ch3:raplkontra}
+    %
+    Sei $F\colon\catA\to\catB$ ein Funktor zwischen Kategorien $\catA,\catB$.
+    Falls $F$ einen (bliebigen!) Limes (Kolimes) nicht erhält, 
+    so besitzt $F$ keinen linksadjungierten (rechtsadjungierten) Funktor.
+\end{thKorollar}
+
+Das Korollar folgt sofort mit Kontraposition aus \cref{ch3:rapl}. Der Beweis des
+Satzes ist mit unserem bisherigen Vorwissen nicht mehr schwer:
+
+\begin{proof}[Beweis von \cref{ch3:rapl}]
+    Sei $I$ eine kleine Kategorie und $D\colon I\to\catA$ ein $I$-Diagramm
+    in $\catA$, für das der Limes $\lim_I D$ existiert. Dann gilt für alle
+    Objekte $A\in\catA$:
+    \begin{align*}
+        \catA\bigl(A, G(\lim\nolimits_I D)\bigr)
+        &\cong \catB(FA, \lim\nolimits_I D)          \\
+        &\cong \lim\nolimits_I \catB(FA, D\blank)    \\
+        &\cong \lim\nolimits_I \catB(A, GD\blank)    \\
+        &\cong \catB(A,\lim\nolimits_I GD)
+    \end{align*}
+    Dabei haben wir zweimal die Isomorphie zwischen Morphismenmengen vermöge der
+    Adjunktion $F\leftadjoint G$ ausgenutzt und zweimal, dass (kovariante) 
+    Hom-Funktoren mit Limiten vertauschen. Das Yonea-Lemma liefert nun: 
+    \[ G(\lim\nolimits_I D) \cong \lim\nolimits_I GD  . \]
+    Der Fall für $F$ verläuft analog (unter Beachtung der Tatsache, dass der
+    kontravariante Hom-Funktor Kolimiten auch zu Limiten macht).
+    \\
+\end{proof}
+
+\begin{thBeispiel}[Vergissfunktoren vs. (Ko)Limiten]\hfill
+    \begin{itemize}
+        \item
+            In \cref{ch1:bsp:TopVergiss} haben wir gesehen, dass der Vergissfunktor
+            $U\colon\Top\to\Set$ sowohl einen links- als auch einen rechtsadjungierten
+            Funktor besitzt. Nach \cref{ch3:rapl} erhält $U$ somit also alle(!) Limiten
+            \emph{und} Kolimiten.
+            
+        \item
+            Betrachten wir hingegen Vergissfunktoren von algebraischen Kategorien, so
+            sehen wir, dass diese im Allgemeinen nicht ganz so gutartig sind. Nehmen wir
+            beispielsweise den bei Loher\cite[1.3]{talk:loher} eingeführten
+            Vergissfunktor $U\colon \Vect_k\to\Set$ von der Kategorie der Vektorräume
+            über einem gegebenen Körper~$k$ nach $\Set$, so erhält dieser zwar alle
+            Limiten (denn der freie Funktor $\Set\to\Vect_k$ ist ein zu $U$
+            linksadjungierter Funktor), aber $U$ erhält nicht alle Kolimiten. Dies sehen
+            wir zum Beispiel anhand des initialen Objekts $0\in\Vect_k$ (trivialer
+            Vektorraum) ein, denn $U(0) = \{0\}$, aber eine einelementige Menge ist
+            \emph{kein} initiales Objekt in $\Set$. Insbesondere wissen wir damit auch,
+            dass $U$ tatsächlich überhaupt keinen rechtsadjungierten Funktor
+            besitzen kann. \pcref{ch3:raplkontra}
+    \end{itemize}
+\end{thBeispiel}
+
+\begin{thBeispiel}[Tensorprodukt vs. direkte Summe]
+    \newcommand{\tensorM}{\blank\otimes M}
+    %
+    Sei $R$ ein kommutativer Ring und $M\in\Mod_R$ ein $R$-Modul. Wir betrachten
+    den Funktor $\tensorM\colon\Mod_R\to\Mod_R$, von dem wir bereits
+    wissen (siehe Loher\cite[2.8]{talk:loher}), dass er einen rechtsadjungierten
+    Funktor besitzt (nämlich den Funktor $\operatorname{Hom}(M,\blank)\colon
+    \Mod_R\to\Mod_R$). Also ist $\tensorM$ ein linksadjungierter Funktor und als
+    solcher erhält $\tensorM$ alle Kolimiten. Da die direkte Summe von
+    $R$-Moduln gerade das Koprodukt (und damit ein Kolimes) in $\Mod_R$ ist,
+    erhalten wir also sofort die äußerst nützliche Tatsache:
+    Tensorieren vertauscht mit direkten Summen.
+    In Formeln bedeutet dies: Ist $(N_i)_{i\in J}$ eine Familie von $R$-Moduln,
+    dann gilt
+    \[ \Bigl(\mkern2mu \bigoplus_{i\in J} N_i \Bigr)\oplus M
+        \cong \bigoplus_{i\in J} (N_i\otimes M)
+    . \]
+    Man kann dies natürlich auch konkret auf Elementen nachrechnen oder mehrfach
+    die universellen Eigenschaften von $\oplus$ und $\otimes$ anwenden; jedoch
+    ist der Beweis \enquote{$\tensorM$ ist ein linksadjungierter Funktor} doch
+    deutlich kürzer und angenehmer.
+\end{thBeispiel}
