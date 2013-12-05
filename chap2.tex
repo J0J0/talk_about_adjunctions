@@ -25,6 +25,7 @@ Mac~Lane\cite[\S\,IV.8,\;\S\,XII.3]{bookc:maclane97} und
 nLab\cite{www:nlab:2category} verweisen.
 
 \begin{thProposition}[Komposition von Adjunktionen]
+    \label{ch2:kompos}
     Seien $\catA,\catB$ und $\catC$ Kategorien und seien $F,G,\bar F,\bar G$
     Funktoren wie in \eqref{ch2:situation}.
     Dann gilt auch $\bar F F \leftadjoint G\bar G$.
@@ -137,3 +138,42 @@ nLab\cite{www:nlab:2category} verweisen.
             $(\bar F,\bar G,\bar\eta,\bar\epsilon)$
     \end{enumerate}
 \end{proof}
+
+\begin{thBeispiel}[Nullobjekte]
+    \newcommand{\cO}{\circledchar[black!40]{$0$}}
+    %
+    Sei $\catA$ eine punktierte Kategorie, d.\,h. eine Kategorie, die ein
+    Nullobjekt\footnote{zugleich initiales und terminales Objekt}~$0\in\catA$ 
+    besitzt. Dann wissen wir nach \cref{ch1:bsp:initterm},\footnote{für die
+    verwendete Terminologie, siehe dort} dass der Funktor $C\colon\catA\to\One$ 
+    sowohl rechts- als auch linksadjungiert zu $\cO\colon\One\to\catA$ ist:
+
+    \[ 
+        \xymatrix{ \catA \ar@<3.5pt>[r]^C & \ar@<2pt>[l]^{\cO} \One
+        \ar@<3.5pt>[r]^{\cO} & \ar@<2pt>[l]^C \catA
+        }
+        \qquad\text{mit}\quad 
+        C\leftadjoint\cO \text{\; und \,} \cO\leftadjoint C
+    . \]
+
+    \noindent
+    Bilden wir nun die Komposition der Adjunktionen, so erhalten wir eine
+    weitere Adjunktion $(\cO C, \cO C, \tilde\eta, \tilde\epsilon)$ des Funktors
+    $\cO C\colon\catA\to\catA$ zu sich selbst. Einheit und Koeinheit der
+    Adjunktionen $C\leftadjoint\cO$ und $\cO\leftadjoint C$ sind aus
+    \cref{ch1:bsp:initterm} bekannt, also können wir $\tilde\eta$ und
+    $\tilde\epsilon$ gemäß \cref{ch2:kompos} berechnen. Sei $A\in\catA$. 
+    Dann gilt
+    \begin{align*}
+        \tilde\eta_A &= \cO(\id_{C\!A}) \after (A{\to}0)
+        = \cO(\id_\ast) \after (A{\to}0) = \id_0 \after (A{\to}0) = (A{\to}0)
+        \\
+        \shortintertext{und}
+        %
+        \tilde\epsilon_A &= (0{\to}A) \after \cO(\id_{C\!A}) = (0{\to}A)
+    . \end{align*}
+    Also ist die Komponente der Einheit~$\tilde\eta$ gerade der eindeutige
+    Morphismus vom dem entsprechenden Objekt zum Nullobjekt und die Komponente
+    der Koeinheit~$\tilde\epsilon$ ist der eindeutige Morphismus vom Nullobjekte
+    zum entsprechenden Objekt.
+\end{thBeispiel}
