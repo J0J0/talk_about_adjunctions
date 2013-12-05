@@ -48,9 +48,92 @@ nLab\cite{www:nlab:2category} verweisen.
             \[ (\bar F F, G\bar G, \tilde\eta, \tilde\epsilon) \]
             eine Adjunktion, wobei $\tilde\eta$ und $\tilde\epsilon$ gegeben
             sind durch
-            \[ \tilde\eta \defeq \bar G\eta\bar F \after \bar\eta
+            \[ \tilde\eta \defeq G\bar\eta F \after \eta
                 \qqundqq
-                \tilde\epsilon \defeq \epsilon \after F\bar\epsilon G
+                \tilde\epsilon \defeq \bar\epsilon \after \bar F\epsilon \bar G
             . \]
     \end{itemize}
 \end{thProposition}
+
+\begin{proof}
+    Seien $(F,G,\phi)$ und $(\bar F,\bar G,\bar\phi)$ wie in der Behauptung.
+    Dann haben wir zunächst für alle $A\in\catA,\; C\in\catC$ Isomorphismen
+    \[  \catC(\bar F F\!A, C) \cong 
+        \catB(F\!A,\bar G C)  \cong 
+        \catA(A, G\bar G C)
+    , \]
+    was direkt aus den gegebenen Adjunktionen folgt. Dass dies natürlich in $A$
+    und $C$ passiert, ist anhand unserer Definition in \ref{ch1:def:adjunktion}
+    auch leicht ersichtlich, denn wir brauchen nur die natürlichen
+    Transformationen
+    \[ \bar\phi\,(F\op\times\Id_\catC)\colon
+        \catC(\bar F F\blank,\blank) \nattrafoto \catB(F\blank,\bar G\blank)
+    \]
+    und
+    \[ \phi\,(\Id_\catA\op\times\bar G)\colon  
+        \catB(F\blank,\bar G\blank) \nattrafoto \catA(\blank,G\bar G\blank)
+    \]
+    zu verknüpfen und erhalten so eine natürliche Transformation~$\tilde\phi$,
+    die auf Objekten gerade der Verknüpfung von $\phi$ und $\bar\phi$ wie in der
+    Behauptung entspricht.
+
+    \smallskip\noindent
+    Seien nun $(F,G,\eta,\epsilon)$ und $(\bar F, \bar G, \bar\eta,
+    \bar\epsilon)$ sowie $\tilde\eta,\,\tilde\epsilon$ wie in der Behauptung.
+    Wir müssen zeigen, dass die natürlichen Transformationen
+    $\tilde\eta,\tilde\epsilon$ die Dreiecksidentitäten erfüllen.
+    Wir zeigen nur
+    \[ \tilde\epsilon\bar FF \after \bar FF\tilde\eta = \id_{\bar FF}  \mkern2mu; \]
+    die andere Gleichung rechnet man mit analogen Argumenten nach.
+    Sei also $A\in\catA$. Dann ist zu zeigen, dass
+    \[ \tilde\epsilon_{\bar FF\!A} \after \bar FF(\tilde\eta_A) = \id_{\bar FF\!A} \]
+    gilt. Wir rechnen:
+    \begin{align*}
+        \tilde\epsilon_{\bar FF\!A} \after \bar FF(\tilde\eta_A)
+        %
+        &\overset{\scriptscriptstyle(1)}=
+            \bigl( \bar\epsilon_{\bar FF\!A} \after 
+                \bar F(\epsilon_{\bar G\bar FF\!A}) \bigr)
+            \after
+            \bar FF\bigl( G(\bar\eta_{F\!A})\after \eta_A \bigr)
+        \\
+        &\overset{\scriptscriptstyle(2)}= 
+            \bar\epsilon_{\bar FF\!A} \after 
+            \bar F\bigl( 
+            \epsilon_{\bar G\bar FF\!A} \after
+            FG(\bar\eta_{F\!A})\after F(\eta_A) \bigr)
+        \\
+        &\overset{\scriptscriptstyle(3)}= 
+            \bar\epsilon_{\bar FF\!A} \after 
+            \bar F\bigl( 
+            \bar\eta_{F\!A}\after \epsilon_{F\!A}
+            \after F(\eta_A) \bigr)
+        \\
+        &\overset{\scriptscriptstyle(4)}= 
+            \bar\epsilon_{\bar FF\!A} \after 
+            \bar F( \bar\eta_{F\!A}\after \id_{F\!A} )
+        \\
+        &\overset{\scriptscriptstyle(5)}= 
+            \bar\epsilon_{\bar FF\!A} \after 
+            \bar F(\bar\eta_{F\!A})
+        \\
+        &\overset{\scriptscriptstyle(6)}= 
+            \id_{\bar FF\!A}
+    \end{align*}
+    Dabei wurden die Voraussetzungen wie folgt benutzt:
+    \begin{enumerate}[(1)]
+        \item
+            Definition von $\tilde\epsilon$ und $\tilde\eta$
+        \item
+            Funktorialität von $\bar F$ und $F$
+        \item
+            $\epsilon\colon FG\nattrafoto\Id_\catB$ natürliche Transformation
+        \item
+            Dreiecksidentität der Adjunktion $(F,G,\eta,\epsilon)$
+        \item
+            Neutralität von $\id_{F\!A}$
+        \item
+            Dreiecksidentität der Adjunktion 
+            $(\bar F,\bar G,\bar\eta,\bar\epsilon)$
+    \end{enumerate}
+\end{proof}
