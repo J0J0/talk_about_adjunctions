@@ -31,13 +31,117 @@ ein Funktor keinen links- oder rechtsadjungierten Funktor besitzen kann:
     so besitzt $F$ keinen linksadjungierten (rechtsadjungierten) Funktor.
 \end{thKorollar}
 
-Das Korollar folgt sofort mit Kontraposition aus \cref{ch3:rapl}. Der Beweis des
-Satzes ist mit unserem bisherigen Vorwissen nicht mehr schwer:
+Das Korollar folgt sofort mit Kontraposition aus \cref{ch3:rapl}. Für den Beweis
+des Satzes benötigen wir noch ein Lemma, zu dessen Formulierung wir wiederum den
+Diagonalfunktor~$\Delta$ brauchen:
+
+\begin{thErinnerDef}[Diagonalfunktor]
+    Sei $I$ eine kleine Kategorie und $\catA$ eine Kategorie.
+    \begin{itemize}
+        \item 
+            Für alle $A\in\catA$ bezeichne $\Delta^I_A$ das $I$-Diagramm in
+            $\catA$, welches alle Objekte aus $I$ auf $A$ abbildet und alle
+            Morphismen auf $\id_A$.
+            
+        \item
+            Der \emph{Diagonalfunktor $\Delta^I\colon\catA\to\catA^I$} ist 
+            gegeben durch
+            \[ A\mapsto \Delta^I_A \]
+            auf Objekten und auf Morphismen wie folgt: Ist $f\colon A\to B$
+            ein Morphismus von Objekten $A,B$ in $\catA$, so ist $\Delta^I(f)$
+            die natürliche Transformation $\Delta^I_A \nattrafoto \Delta^I_B$,
+            die auf jedem Objekt aus~$I$ durch $f$ gegeben ist.
+            
+        \item
+            Ist $D\colon I\to\catA$ ein $I$-Diagramm in $\catA$ und $X\in\catA$,
+            so ist ein Kegel $\bigl( X \to D(i) \bigr)_{i\in I}$ nichts anderes
+            als eine natürliche Transformation $\Delta^I_X \nattrafoto D$.
+            Insbesondere entspricht $\catA^I(\Delta^I_X, D)$ gerade der Menge aller
+            Kegel über $D$.
+    \end{itemize}
+\end{thErinnerDef}
+
+\begin{thLemma}
+    \label{ch3:limesviadiagrammkategorie}
+    %
+    Sei $I$ eine kleine Kategorie, $\catA$ eine Kategorie und $D\colon
+    I\to\catA$ ein $I$-Diagramm in $\catA$. Sei $X\in\catA$ und gelte
+    \[ \catA(A,X) \cong \catA^I(\Delta^I A, D) \]
+    natürlich in $A\in\catA$. Dann ist $X$ ein Limes von $D$ über $I$.
+\end{thLemma}
+
+\begin{proof}
+    Sei $\phi$ ein expliziter natürlicher Isomorphismus
+    \[ \catA^I(\Delta^I\blank, D) \nattrafoto \catA(\blank, X)  \]
+    von Funktoren $\catA\op\to\Set$ (welcher nach Voraussetzung existiert).
+    Sei weiter 
+    \[ p \defeq \phi_X^{-1}(\id_X)\colon \Delta^I_X\nattrafoto D  . \]
+    Wir behaupten nun, dass $(X,p)$ ein Limes von $D$ über $I$ ist. Sei also
+    $Y\in\catA$ und $q\colon\Delta^I_Y\nattrafoto D$. Dann liefert 
+    $f \defeq \phi_Y(q)$ einen Morphismus $Y\to X$ und wir müssen nur noch
+    zeigen, dass für alle $i\in I$ schon $p_i\after f = q_i$ gilt
+    (\cref{ch3:fig:trafos}, links) und dass es keine weiteren Mor\-phi\-smen
+    $Y\to X$ mit dieser Eigenschaft gibt. Weil $\phi$ eine natürliche
+    Transformation ist, gilt $f^*\after \phi_X = \phi_Y \after (\Delta^I f)^*$
+    (d.\,h. das rechte Diagramm in \cref{ch3:fig:trafos} kommutiert).
+    Nach Definition gilt $p = \phi_X^{-1}(\id_X)$ und damit
+    \[ (f^*\after \phi_X)(p) = f^*(\id_X) = f  . \]
+    Damit erhalten wir:
+    \begin{align*}
+        \phi_Y(q) = f
+        &= \bigl( \phi_Y \after (\Delta^I f)^* \bigr)(p)    \\
+        &= \phi_Y\bigl( p\after (\Delta^I f) \bigr)
+    . \end{align*}
+    Da $\phi_Y$ bijektiv ist, folgt $q = p \after (\Delta^I f)$ und dies
+    bedeutet komponentenweise nichts anderes als 
+    $q_i = \bigl( p \after (\Delta^I f) \bigr)_i = p_i \after f$
+    für alle $i\in I$. Nehmen wir nun an, $g\colon Y\to X$ ist ein zweiter
+    Morphismus mit $q = p\after (\Delta^I g)$. Dann ist $\tilde q\defeq
+    \phi_Y^{-1}(g)$ eine natürliche Transformation, die analog zur Berechnung
+    bei $q$ die Eigenschaft $\tilde q = p \after (\Delta^I g)$ erfüllt. Dann
+    folgt aber schon $q = \tilde q$ und damit $f = \phi_Y(q) = 
+    \phi_Y(\tilde q) = g$. Dies zeigt die Behauptung.
+    \\
+    %
+    \begin{figure}[b]
+        \centering
+        \begin{equation*}
+            \begin{gathered}
+                \xymatrix{
+                    & \ar@/_1pc/[ddl]_{q_i} Y \ar@/^1pc/[ddr]^{q_j} 
+                    \ar[d]^f &
+                    \\
+                    & \ar[dl]_(.4){p_i} X \ar[dr]^(.4){p_j} &
+                    \\
+                    D(i) & \cdots & D(j)
+                }
+            \end{gathered}
+            %
+            \hspace{2cm}
+            %
+            \begin{gathered}
+                \xymatrix{
+                    \catA^I(\Delta^I_X, D) \ar[r]^{\phi_X} \ar[d]^{(\Delta^I f)^*} &
+                    \catA(X,X) \ar[d]_{f^*}
+                    \\
+                    \catA^I(\Delta^I_Y, D) \ar[r]_{\phi_Y} & \catA(Y,X)
+                }
+            \end{gathered}
+        \end{equation*}
+        \caption{Situation im Beweis von \cref{ch3:limesviadiagrammkategorie}}
+        \label{ch3:fig:trafos}
+    \end{figure}
+\end{proof}
 
 \begin{proof}[Beweis von \cref{ch3:rapl}]
+    \belowpdfbookmark{Beweis von Satz~\ref{ch3:rapl}}{beweisrapl}
+    %
     Sei $I$ eine kleine Kategorie und $D\colon I\to\catB$ ein $I$-Diagramm
-    in $\catB$, für das der Limes $\lim_I D$ existiert. Dann gilt für alle
-    Objekte $A\in\catA$:
+    in $\catB$, für das der Limes $\lim_I D$ existiert. 
+    Wir geben nun zuerst einen einfachen Beweis dafür, dass $G$ diesen Limes
+    erhält, falls $\catA$ eine vollständige Kategorie\footnote{d.\,h. es
+    existieren alle kleinen Limiten (also Limiten von Diagrammen über kleinen
+    Kategorien)} ist. Es gilt für alle Objekte $A\in\catA$:
     \begin{align*}
         \catA\bigl(A, G(\lim\nolimits_I D)\bigr)
         &\cong \catB(FA, \lim\nolimits_I D)          \\
@@ -45,13 +149,38 @@ Satzes ist mit unserem bisherigen Vorwissen nicht mehr schwer:
         &\cong \lim\nolimits_I \catA(A, GD\blank)    \\
         &\cong \catA(A,\lim\nolimits_I GD)
     \end{align*}
-    Dabei haben wir zweimal die Isomorphie zwischen Morphismenmengen vermöge der
-    Adjunktion $F\leftadjoint G$ ausgenutzt und zweimal, dass (kovariante) 
-    Hom-Funktoren mit Limiten vertauschen. Das Yonea-Lemma liefert nun: 
+    Dabei haben wir zweimal die (natürliche) Isomorphie zwischen
+    Morphismenmengen vermöge der Adjunktion $F\leftadjoint G$ ausgenutzt und
+    zweimal, dass (kovariante) Hom-Funktoren mit Limiten vertauschen. Das
+    Yoneda-Lemma liefert nun: 
     \[ G(\lim\nolimits_I D) \cong \lim\nolimits_I GD  . \]
-    Der Fall für $F$ verläuft analog (unter Beachtung der Tatsache, dass der
-    kontravariante Hom-Funktor Kolimiten auch zu Limiten macht).
-    \\
+    Den Fall für $F$ erhält man dual (unter Beachtung der Tatsache, dass der
+    kontravariante Hom-Funktor Kolimiten auch zu Limiten macht), wenn man
+    fordert, dass $\catB$ kovollständig ist.
+    
+    \noindent
+    Nun zum allgemeinen Fall.  Dann ist der kritische Punkt in obigem Beweis,
+    dass wir nicht wissen, ob \enquote{$\lim_I GD$} überhaupt
+    existiert.\footnote{%
+        Interessanterweise findet man in vielen Quellen trotzdem den obigen
+        Beweis ohne jegliche Einschränkungen an $\catA$ oder $\catB$. Falls
+        jemand eine (einfache) Rechtfertigung dafür kennt, möge sich diese
+        Person bitte bei mir melden \ldots%
+    }
+    Wie im ersten Fall erhalten wir für alle $A\in\catA$
+    \[  \catA\bigl(A, G(\lim\nolimits_I D)\bigr)
+        \cong \lim\nolimits_I \catA(A, GD\blank)
+    \]
+    natürlich in $A$. Nun macht man sich leicht durch die explizite Darstellung
+    von Limiten in $\Set$ klar, dass der Limes auf der rechten Seite gerade die
+    Menge aller natürlichen Transformationen $\Delta^I_A \nattrafoto GD$ ist.
+    Das heißt für alle $A\in\catA$ gilt
+    \[ \catA\bigl(A, G(\lim\nolimits_I D)\bigr)
+        \cong \catA^I(\Delta^I A, GD)
+    , \]
+    natürlich in $A$. Mit \cref{ch3:limesviadiagrammkategorie} erhalten wir also
+    wie gewünscht:
+    \[ G(\lim\nolimits_I D) \cong \lim\nolimits_I GD  . \]
 \end{proof}
 
 \begin{thBeispiel}[Vergissfunktoren vs. (Ko)Limiten]\hfill
@@ -78,7 +207,7 @@ Satzes ist mit unserem bisherigen Vorwissen nicht mehr schwer:
     \end{itemize}
 \end{thBeispiel}
 
-\begin{thBeispiel}[Tensorprodukt vs. direkte Summe]
+\begin{thBeispiel}[Tensorprodukt vs. direkte Summe und Quotienten]
     \newcommand{\tensorM}{\blank\otimes M}
     %
     Sei $R$ ein kommutativer Ring und $M\in\Mod_R$ ein $R$-Modul. Wir betrachten
@@ -92,7 +221,7 @@ Satzes ist mit unserem bisherigen Vorwissen nicht mehr schwer:
     Tensorieren vertauscht mit direkten Summen.
     In Formeln bedeutet dies: Ist $(N_i)_{i\in J}$ eine Familie von $R$-Moduln,
     dann gilt
-    \[ \Bigl(\mkern2mu \bigoplus_{i\in J} N_i \Bigr)\oplus M
+    \[ \Bigl(\mkern2mu \bigoplus_{i\in J} N_i \Bigr)\otimes M
         \cong \bigoplus_{i\in J} (N_i\otimes M)
     . \]
     Man kann dies natürlich auch konkret auf Elementen nachrechnen oder mehrfach
