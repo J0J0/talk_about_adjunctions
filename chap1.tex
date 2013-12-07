@@ -6,10 +6,11 @@ wir im Folgenden benutzen wollen.
 
 \begin{thErinnerung}[Hom-Funktor(en)]
     Sei $\catA$ eine Kategorie. Dann ist $\catA(\blank,\blank)$ ein Funktor
-    $\catA\op\times\catA\to\Set$, gegeben auf Objekten durch die offensichtliche
-    Art und Weise und auf Morphismen wie folgt: seien $(A,B),(A',B')$ Objekte
-    in $\catA\op\times\catA$ und sei $(f\op,g)\colon (A,B)\to (A',B')$ ein 
-    Morphismus zwischen diesen, dann gilt:
+    $\catA\op\times\catA\to\Set$, gegeben auf Objekten durch 
+    $(A,B)\mapsto \catA(A,B)$ und auf Morphismen wie folgt: 
+    seien $(A,B),(A',B')$ Objekte in $\catA\op\times\catA$ und sei
+    $(f\op,g)\colon (A,B)\to (A',B')$ ein Morphismus zwischen diesen, 
+    dann gilt:
     \[ \catA(f\op,g)\colon \catA(A,B)\to \catA(A',B'), \quad 
         h\mapsto g\after h\after f
     . \]
@@ -111,14 +112,14 @@ untersuchen.
     Sei $(Y,T)$ ein topologischer Raum und seien $(X,T_D)$ bzw. $(Z,T_K)$
     topologische Räume mit der diskreten bzw. der Klumpentopologie. Dann gilt
     \[  \Top\bigl( (X,T_D), (Y,T) \bigr) = \Set(X,Y)  \qundq
-        \Top\bigl( (Y,T), (Z,T_D) \bigr) = \Set(X,Y)
+        \Top\bigl( (Y,T), (Z,T_D) \bigr) = \Set(Y,Z)
     , \]
     denn jede Abbildung aus einem Raum mit der diskreten Topologie und jede
     Abbildung in einen Raum mit der Klumpentopologie ist stetig. Dies zeigt,
     dass die Funktoren $D,K$ auf Morphismen wohldefiniert sind. Wir behaupten
     nun, dass wir eine Kette von Adjunktionen $D\leftadjoint U\leftadjoint K$
-    haben. Dies lässt leicht überprüfen, denn es gilt für alle Mengen~$Y$ und
-    alle topologischen Räume $(X,T)$:
+    haben. Dies lässt sich leicht überprüfen, denn es gilt für alle Mengen~$Y$ 
+    und alle topologischen Räume $(X,T)$:
     \begin{alignat*}{2}
         \Top\bigl( DY, (X,T) \bigr) &= \Set(Y,X) &&= \Set\bigl( Y, U(X,T)\bigr)
         \quad\text{und}\\
