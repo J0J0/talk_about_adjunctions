@@ -35,15 +35,15 @@ Das Korollar folgt sofort mit Kontraposition aus \cref{ch3:rapl}. Der Beweis des
 Satzes ist mit unserem bisherigen Vorwissen nicht mehr schwer:
 
 \begin{proof}[Beweis von \cref{ch3:rapl}]
-    Sei $I$ eine kleine Kategorie und $D\colon I\to\catA$ ein $I$-Diagramm
-    in $\catA$, für das der Limes $\lim_I D$ existiert. Dann gilt für alle
+    Sei $I$ eine kleine Kategorie und $D\colon I\to\catB$ ein $I$-Diagramm
+    in $\catB$, für das der Limes $\lim_I D$ existiert. Dann gilt für alle
     Objekte $A\in\catA$:
     \begin{align*}
         \catA\bigl(A, G(\lim\nolimits_I D)\bigr)
         &\cong \catB(FA, \lim\nolimits_I D)          \\
         &\cong \lim\nolimits_I \catB(FA, D\blank)    \\
-        &\cong \lim\nolimits_I \catB(A, GD\blank)    \\
-        &\cong \catB(A,\lim\nolimits_I GD)
+        &\cong \lim\nolimits_I \catA(A, GD\blank)    \\
+        &\cong \catA(A,\lim\nolimits_I GD)
     \end{align*}
     Dabei haben wir zweimal die Isomorphie zwischen Morphismenmengen vermöge der
     Adjunktion $F\leftadjoint G$ ausgenutzt und zweimal, dass (kovariante) 
