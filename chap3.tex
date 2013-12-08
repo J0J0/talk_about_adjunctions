@@ -305,7 +305,7 @@ Diagonalfunktor~$\Delta$ brauchen:
     auf Objekten (-- da es keine nicht-trivalen Morphismen gibt und Identitäten
     auf Identitäten abgebildet werden müssen gibt es auf Morphismen nichts zu
     tun). Dann ist der Limes von $Z$ über $\N$ in $\Mod_\Z$ gerade das folgende
-    Produkt in $\Mod_R$:
+    Produkt in $\Mod_\Z$:
     \[ \prod_{n\in\N} \ZQuot{p^n} \;=\; \lim_\N Z  . \]
     Für alle $n\in\N$ ist $\txtZQuot{p^n}$ offenbar ein Torsionsmodul über $\Z$,
     also
@@ -412,8 +412,8 @@ Diagonalfunktor~$\Delta$ brauchen:
                 Kategorien.\footnote{%
                     Diese Daten (zusammen mit gewissen Forderungen an die
                     Morphismen $f_{ij}$) bestimmen offenbar ein
-                    $\Ord{(N,\leq)}$-Diagramm im Sinne von
-                    \cref{ch3:def:ordkatprojindlim}%
+                    $\Ord{(N,\leq)}\op$-Diagramm im Sinne von
+                    \cref{ch3:def:ordkatprojindlim}.%
                 } Dann gilt:
                 \[ \varprojlim_{i\in N} X_i 
                     = \Bigl\{
@@ -545,7 +545,7 @@ Diagonalfunktor~$\Delta$ brauchen:
             . \end{align*}
             Für alle $i\in I$ erhalten wir
             \begin{align*}
-                p_i\after g^A(\eta)\after f 
+                p_i\after \bigl(g^A(\eta)\bigr)\after f 
                 &= \eta_i\after f
                 \qquad\text{und}\\[0.5ex]
                 p_i\after \bigl(g^B\bigl( \eta \after (\Delta^I f) \bigr)\bigr)
