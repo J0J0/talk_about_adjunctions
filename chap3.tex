@@ -1,7 +1,6 @@
 \chapter{Adjungierte Funktoren erhalten Limiten}
 Wir kommen nun zu einem der wichtigsten Aspekte von Adjunktionen: adjungierte
 Funktoren erhalten (Ko)Limiten. Genauer:
-% TODO ^
 
 \begin{thSatz}[Adjungierte Funktoren erhalten (Ko)Limiten]
     \label{ch3:rapl}
@@ -539,9 +538,9 @@ Diagonalfunktor~$\Delta$ brauchen:
             \begin{align*}
                 \bigl(f^* \after g^A\bigr)(\eta)
                 &= f^*\bigl( g^A(\eta) \bigr)
-                 = g^A(\eta) \circ f
+                 = g^A(\eta) \after f
                 \qquad\text{und}\\[0.5ex]
-                \bigl(g^B \circ (\Delta^I f)^*\bigr)(\eta)
+                \bigl(g^B \after (\Delta^I f)^*\bigr)(\eta)
                 &= g^B\bigl( \eta \after (\Delta^I f) \bigr)
             . \end{align*}
             Für alle $i\in I$ erhalten wir
@@ -556,10 +555,10 @@ Diagonalfunktor~$\Delta$ brauchen:
             weswegen nach der universellen Eigenschaft von $\lim_I D$
             schon 
             \[ \bigl(f^* \after g^A\bigr)(\eta) 
-                = \bigl(g^B \circ (\Delta^I f)^*\bigr)(\eta)
+                = \bigl(g^B \after (\Delta^I f)^*\bigr)(\eta)
             \]
             gelten muss. Da $\eta$ beliebig war, folgt
-            \[ f^* \after g^A = g^B \circ (\Delta^I f)^* , \]
+            \[ f^* \after g^A = g^B \after (\Delta^I f)^* , \]
             und gerade das wollten wir zeigen.
             
         \item[Natürlichkeit in \boldmath$D$]\hfill\\
@@ -645,7 +644,7 @@ Diagonalfunktor~$\Delta$ brauchen:
             Wir kennen nun einen zweiten Beweis, dass in vollständigen
             Kategorien Limiten mit Limiten vertauschen, denn wir haben
             soeben gezeigt, dass man \enquote{Limesbildung} als
-            rechtsadjungierten Funktor auffasen kann und als solcher
+            rechtsadjungierten Funktor auffassen kann und als solcher
             vertauscht dieser nach \cref{ch3:rapl} mit Limiten.
     \end{itemize}
 \end{thBemerkung}
