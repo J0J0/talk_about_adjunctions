@@ -123,6 +123,7 @@
 % new math 'operators'
 \newcommand{\sDMO}[1]{\expandafter\DeclareMathOperator\csname#1\endcsname{#1}}
 
+\sDMO{colim}
 \sDMO{id}
 \sDMO{Id}
 \sDMO{Ob}
@@ -144,6 +145,7 @@
 \MakeCategoryName{Met}
 \MakeCategoryName{CMet}
 \MakeCategoryName{Mod}
+\MakeCategoryName{Ring}
 \MakeCategoryName{Set}
 \MakeCategoryName{Top}
 \MakeCategoryName{Vect}
@@ -191,8 +193,23 @@
 \newcommand{\longmapsfrom}{\mathrel{\reflectbox{$\longmapsto$}}}
 
 % provide mathbb symbols \N \Z \Q \R and \C
-\defmathbbsymbols{Z Q C}
-\defmathbbsymbolsubs{N R}
+\defmathbbsymbols{N Z Q C}
+\defmathbbsymbolsubs{R}
+
+% quotient by means of groups/rings/vector spaces
+\newcommand{\Quot}[3][\big]{%
+\raisebox{2pt}{$\mathsurround=0pt\displaystyle #2$}\mkern-3mu%
+#1/%
+\mkern-3mu\raisebox{-3.5pt}{$\displaystyle #3$}%
+}
+\newcommand{\QuotS}[3][]{%
+\raisebox{2pt}{$\mathsurround=0pt\displaystyle #2$}\mkern-1mu%
+#1/%
+\mkern-3mu\raisebox{-3.5pt}{$\displaystyle #3$}%
+}
+
+\newcommand{\ZQuot}[2][\big]{\Quot[#1]{\Z}{#2\Z}}
+\newcommand{\txtZQuot}[1]{\Z/#1\Z}
 
 % define some point set topology specific macros
 \newcommand{\setclosure}[1]{\overline{#1}}
@@ -207,6 +224,7 @@
 \newcommand{\half}{\frac{1}{2}}
 \newcommand{\leftadjoint}{\dashv}
 \newcommand{\mr}{\mathrm}
+\newcommand{\mf}{\mathfrak}
 \newcommand{\nattrafoto}{\mathrel{\Rightarrow}}
 \newcommand{\op}{^\mathsf{op}}
 \newcommand{\pot}[1]{\powerset(#1)}
@@ -229,6 +247,12 @@
 % xy tip selection (ComputerModern)
 \SelectTips{cm}{}
 \UseTips
+
+% xy specific settings
+\newcommand{\xyhookdirspacing}{4pt}
+\newdir{`}{\dir^{(}} 
+\newdir{ `}{{}*!/-\xyhookdirspacing/\dir{`}}
+\iffalse)\fi % fix syntax highlighting
 
 % make circled chars with tikz
 \newcommand{\circledchar}[2][black]{%

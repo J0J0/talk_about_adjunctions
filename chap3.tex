@@ -36,6 +36,8 @@ des Satzes benötigen wir noch ein Lemma, zu dessen Formulierung wir wiederum de
 Diagonalfunktor~$\Delta$ brauchen:
 
 \begin{thErinnerDef}[Diagonalfunktor]
+    \label{ch3:def:diagonalfunktor}
+    %
     Sei $I$ eine kleine Kategorie und $\catA$ eine Kategorie.
     \begin{itemize}
         \item 
@@ -208,19 +210,23 @@ Diagonalfunktor~$\Delta$ brauchen:
 \end{thBeispiel}
 
 \begin{thBeispiel}[Tensorprodukt vs. direkte Summe und Quotienten]
+    \label{ch3:bsp:tensorvskolimiten}
     \newcommand{\tensorM}{\blank\otimes M}
     %
-    Sei $R$ ein kommutativer Ring und $M\in\Mod_R$ ein $R$-Modul. Wir betrachten
-    den Funktor $\tensorM\colon\Mod_R\to\Mod_R$, von dem wir bereits
-    wissen (siehe Loher\cite[2.8]{talk:loher}), dass er einen rechtsadjungierten
-    Funktor besitzt (nämlich den Funktor $\operatorname{Hom}(M,\blank)\colon
-    \Mod_R\to\Mod_R$). Also ist $\tensorM$ ein linksadjungierter Funktor und als
-    solcher erhält $\tensorM$ alle Kolimiten. Da die direkte Summe von
-    $R$-Moduln gerade das Koprodukt (und damit ein Kolimes) in $\Mod_R$ ist,
-    erhalten wir also sofort die äußerst nützliche Tatsache:
-    Tensorieren vertauscht mit direkten Summen.
-    In Formeln bedeutet dies: Ist $(N_i)_{i\in J}$ eine Familie von $R$-Moduln,
-    dann gilt
+    Sei $R$ ein kommutativer Ring und $M\in\Mod_R$ ein $R$-Modul. Wenn wir im
+    Folgenden $\otimes$ schreiben, so meinen wir stets das Tensorprodukt über
+    $R$. 
+    
+    \noindent
+    Wir betrachten den Funktor $\tensorM\colon\Mod_R\to\Mod_R$, von dem wir
+    bereits wissen (siehe Loher\cite[2.8]{talk:loher}), dass er einen
+    rechtsadjungierten Funktor besitzt (nämlich den Funktor
+    $\operatorname{Hom}(M,\blank)\colon \Mod_R\to\Mod_R$). Also ist $\tensorM$
+    ein linksadjungierter Funktor und als solcher erhält $\tensorM$ alle
+    Kolimiten. Da die direkte Summe von $R$-Moduln gerade das Koprodukt (und
+    damit ein Kolimes) in $\Mod_R$ ist, erhalten wir also sofort die äußerst
+    nützliche Tatsache: Tensorieren vertauscht mit direkten Summen.  In Formeln
+    bedeutet dies: Ist $(N_i)_{i\in J}$ eine Familie von $R$-Moduln, dann gilt
     \[ \Bigl(\mkern2mu \bigoplus_{i\in J} N_i \Bigr)\otimes M
         \cong \bigoplus_{i\in J} (N_i\otimes M)
     . \]
@@ -228,4 +234,418 @@ Diagonalfunktor~$\Delta$ brauchen:
     die universellen Eigenschaften von $\oplus$ und $\otimes$ anwenden; jedoch
     ist der Beweis \enquote{$\tensorM$ ist ein linksadjungierter Funktor} doch
     deutlich kürzer und angenehmer.
+    
+    \medskip\noindent
+    Sei nun $\mf a\triangleleft R$ ein Ideal in $R$. Wie man sich leicht klarmacht,
+    ist der Pushout des Diagramms 
+    \[ 
+        \begin{gathered}
+            \xymatrix@=4mm{ \mf a \ar[d] \ar@{ `->}[r] & R \\ 0 & } 
+        \end{gathered}
+        \qquad\rightsquigarrow\qquad
+        \begin{gathered}
+            \xymatrix@=4mm{ \mf a \ar[d] \ar@{ `->}[r] & R \ar[d] \\ 
+            0 \ar[r] & R/\mf a }
+        \end{gathered}
+    \]
+    gerade der Quotient $R/\mf a$ (wobei dies allgemein für Pushouts in $\Mod_R$
+    gilt). Also können wir \enquote{Quotientenbildung} als Kolimes auffassen und
+    nachdem $\tensorM$ ein linksadjungierter Funktor ist, muss also auch
+    \[ 
+        \begin{gathered}
+            \xymatrix@=4mm{ \mf a\otimes M \ar[d] \ar[r] & R\otimes M \ar[d]
+                           \\ 0\otimes M \ar[r] & (R/\mf a) \otimes M }
+        \end{gathered}
+        \qquad\rightsquigarrow\qquad
+        \begin{gathered}
+            \xymatrix@=4mm{ \mf a\otimes M \ar[d] \ar[r] & M \ar[d]
+                           \\ 0 \ar[r] & (R/\mf a) \otimes M }
+        \end{gathered}
+    \]
+    ein Pushout-Diagramm in $\Mod_R$ sein, mit
+    \[ (R/\mf a) \otimes M \;\cong\; \Quot{R\otimes M}{\mf a\otimes M} . \]
+    Also müssen wir nur wissen, wie $\mf a\otimes M$ als als Teilmenge von
+    $R\otimes M \cong M$ aussieht. Man sieht leicht, dass unter dem
+    Iasomorphismus (gegeben auf elementaren Tensoren durch)
+    \[ R\otimes M \to M, \quad r\otimes m \mapsto rm \]
+    das Bild von $\mf a\otimes M$ gerade $\mf aM\subset M$ entspricht.
+    (Achtung, im Allgemeinen gilt jedoch \emph{nicht}
+    $\mf a\otimes M \cong \mf aM$. Letztere Isomorphie ist aber
+    insbesondere dann gegeben, wenn $M$ flach ist.) Also haben wir gezeigt:
+    \[ (R/\mf a) \otimes M \;\cong\; \Quot{M}{\mf aM} \mkern1mu. \]
 \end{thBeispiel}
+
+\begin{thBeispiel}[Tensorprodukt vs. Limiten]
+    \label{ch3:bsp:tensorvslimiten}
+    \newcommand{\tensorQ}{\blank\otimes\Q}
+    In \cref{ch3:bsp:tensorvskolimiten} haben wir gesehen, dass sich
+    Tensorprodukte mit Kolimiten vertragen. Nun wollen wir zeigen, dass
+    $\blank\otimes M$ (mit den Bezeichnern aus dem vorherigen Beispiel)
+    Limiten und insbesondere Produkte im Allgemeinen nicht erhält, d.\,h.,
+    dass \enquote{Tensorieren} nicht mit Limiten/Produkten vertauscht.
+
+    \noindent
+    Für diejenigen Leser, denen die \emph{$p$-adischen ganzen Zahlen~$\Z_p$} 
+    für eine Primzahl $p\in\Z$ als projektiver Limes $\varprojlim_{n\in\N}
+    \txtZQuot{p^n}$ bekannt sind, nennen wir gleich das interessante Beispiel:
+    \[ \thickmuskip=8mu
+        \Z_p\underset{\scriptscriptstyle\Z}\otimes\Q \cong \Q_p \not\cong 0 
+        \cong  \varprojlim_{n\in\N} \,\Bigl( \ZQuot{p^n} 
+        \underset{\scriptscriptstyle\Z}\otimes \Q \Bigr)
+    . \]
+
+    \noindent
+    Wir wollen dieses Phänomen nun ohne Zuhilfenahme von $p$-adischen Zahlen
+    etwas näher beleuchten.  Dazu betrachten wir den $\Z$-Modul $\Q$ und den
+    Funktor $\tensorQ$ (wobei wir stets über $\Z$ tensorieren). Sei $p\in\Z$
+    eine Primzahl. Weiter fassen wir $\N$ (zunächst) als diskrete
+    Kategorie\footnote{d.\,h. als Katgorie, die außer den Identitätsmorphismen
+    keine weiteren besitzt} auf und definieren das $\N$-Diagramm~$Z$ in
+    $\Mod_\Z$ durch
+    \[ \N\to\Mod_\Z, \quad n\mapsto \ZQuot{p^n}  \]
+    auf Objekten (-- da es keine nicht-trivalen Morphismen gibt und Identitäten
+    auf Identitäten abgebildet werden müssen gibt es auf Morphismen nichts zu
+    tun). Dann ist der Limes von $Z$ über $\N$ in $\Mod_\Z$ gerade das folgende
+    Produkt in $\Mod_R$:
+    \[ \prod_{n\in\N} \ZQuot{p^n} \;=\; \lim_\N Z  . \]
+    Für alle $n\in\N$ ist $\txtZQuot{p^n}$ offenbar ein Torsionsmodul über $\Z$,
+    also
+    \[ \Bigl( \ZQuot{p^n} \Bigr) \otimes \Q  \;\cong\; 0  . \]
+    Insbesondere gilt somit:
+    \[ \thickmuskip=8mu
+        0 \cong \prod_{n\in\N} 0 
+        \cong \prod_{n\in\N} \Bigl( \ZQuot{p^n} \otimes\Q\Bigr)
+        = \lim_\N \,\bigl((Z\blank)\otimes\Q\bigr)
+    . \]
+    Aber es gilt
+    \[ \Bigl( \lim_\N Z \Bigr) \otimes \Q 
+        \;\cong\; \bigl(\Z\setminus\{0\}\bigr)^{-1} 
+        \Bigl( \prod_{n\in\N} \ZQuot{p^n} \Bigr)
+        \;\not\cong\; 0  , 
+    \]
+    denn $([1])_{n\in\N}/1$ ist ein nicht-trivales Element in der Lokalisierung
+    $(\Z\setminus\{0\})^{-1} \bigl( \prod_{n\in\N} \txtZQuot{p^n} \bigr)$.
+    Wenn wir nun noch klären, wie $\Z_p$ aus dem Eingangsbeispiel genau
+    definiert ist, so lassen sich diese Argumente leicht darauf übertragen, was
+    an dieser Stelle dem Leser zur Übung überlassen sei.
+    
+    \begin{thErinnerDef}[Ordnungskategorie, projektiver/induktiver Limes]%
+        \label{ch3:def:ordkatprojindlim}
+        \hfill\\
+        Sei $(N,\leq)$ eine partiell geordnete Menge und sei $\catA$ eine
+        Kategorie.
+        \begin{itemize}
+            \item
+                Die (kleine) Kategorie $\Ord{(N,\leq)}$ sei gegeben durch
+                $\Ob(\Ord{(N,\leq)}) \defeq N$ und für $i,j\in N$ gebe es
+                einen eindeutigen Morphismus $i\to j$, falls $i\leq j$
+                gilt (ansonsten keinen); sind $i,j,k\in N$ und $i\to j,\; j\to
+                k$ Morphismen, so sei $(j\to k)\after (i\to j) \defeq (i\to k)$.
+                
+            \item
+                Sei $(N,\leq)$ zusätzlich eine gerichtete Menge\footnote{d.\,h.
+                eine partiell geordnete Menge und für alle $i,j\in N$ gebe es
+                ein $k\in N$ mit $i\leq k$ und $j\leq k$} und sei $I \defeq
+                \Ord{(N,\leq)}$.
+                
+                Sei $D\colon I\op\to\catA$ ein $I\op$-Diagramm in $\catA$. 
+                Falls $D$ einen Limes über $I\op$ in $\catA$ besitzt, so
+                definieren wir den \emph{projektiven Limes von $D$ über $N$}
+                durch
+                \[ \varprojlim_{n\in N} D(n) \defeq \lim\nolimits_{I\op} D  . \]
+                
+                Sei $\bar D\colon I\to\catA$ ein $I$-Diagramm in $\catA$. 
+                Falls $\bar D$ einen Kolimes über $I$ in $\catA$ besitzt, so
+                definieren wir den \emph{induktiven Limes von $\bar D$ über $N$}
+                durch
+                \[ \varinjlim_{n\in N} \bar D(n) 
+                    \defeq \colim\nolimits_I \bar D  
+                . \]
+                %
+                Wir nennen $D$ auch ein \emph{projektives System über $N$
+                in $\catA$} und $\bar D$ ein \emph{induktives System über
+                $N$ in $\catA$}.
+        \end{itemize}
+    \end{thErinnerDef}
+    
+    \begin{thDef}[Vervollständigung von Ringen, $p$-adische (ganze) Zahlen]\hfill
+        \begin{itemize}
+            \item
+                Sei $R$ ein kommutativer Ring und $\mf a\triangleleft R$ ein
+                Ideal. Dann definiert
+                \begin{align*}
+                    \N \ni n   &\mapsto \Quot{R}{\mf a^n}  \\[3pt]
+                    (n\leq m)  &\mapsto \bigl(\mkern2mu
+                        \Quot{R}{\mf a^m}  \to \Quot{R}{\mf a^n}, \;\;
+                                       [x] \mapsto [x]
+                    \mkern1mu \bigr)
+                \end{align*}
+                ein projektives System in $\Ring$ über $(\N,\leq)$ (mit der
+                üblichen (Total-)Ordnung \enquote{$\leq$} auf~$\N$). Wir
+                bezeichnen den projektiven Limes
+                \[ \varprojlim_{n\in\N} \, \Bigl( \Quot{R}{\mf a^n} \Bigr) \]
+                als \emph{$\mf a$-adische Vervollständigung von $R$}.
+                
+            \item
+                Sei $p\in\Z$ eine Primzahl und $\Spann{p}$ das von $p$ in $\Z$
+                erzeugte Ideal. Dann sind die \emph{$p$-adischen ganzen
+                Zahlen~$\Z_p$} definiert als die $\Spann{p}$-adische
+                Vervollständigung von $\Z$:
+                \[ \Z_p \defeq \varprojlim_{n\in\N} \, \Bigl( \ZQuot{p^n} \Bigr)
+                . \]
+                Den Quotientenkörper $\operatorname{Quot}(\Z_p)$ des
+                Integritätsrings~$\Z_p$ nennen wir \emph{$p$-adische Zahlen} und
+                wir bezeichnen diesen mit $\Q_p$.
+        \end{itemize}
+    \end{thDef}
+    
+    \begin{thBemerkung}\hfill
+        \begin{itemize}
+            \item
+                In $\Set,\Group,\Ring,\Mod_R,\Vect_k$ (für einen kommutativen
+                Ring~$R$ und einen Körper~$k$) existieren stets alle projektiven
+                Limiten und diese lassen sich wie folgt explizit angeben:
+                Sei $(N,\leq)$ eine gerichtete Menge und 
+                \[ \bigl( (X_i)_{i\in N},
+                \, (f_{ij}\colon X_j\to X_i)_{i,j\in N,\, i\leq j} \bigr) \]
+                ein
+                projektives System über $(N,\leq)$ in einer der genannten
+                Kategorien.\footnote{%
+                    Diese Daten (zusammen mit gewissen Forderungen an die
+                    Morphismen $f_{ij}$) bestimmen offenbar ein
+                    $\Ord{(N,\leq)}$-Diagramm im Sinne von
+                    \cref{ch3:def:ordkatprojindlim}%
+                } Dann gilt:
+                \[ \varprojlim_{i\in N} X_i 
+                    = \Bigl\{
+                        (x_i)_{i\in N} \in \prod\nolimits_{i\in N} X_i
+                        \cMid\Big \forall\,i,j\in N\colon\;
+                        i \leq j \implies x_i = f_{ij}(x_j)
+                    \Bigr\}
+                \]
+                (mit komponentenweisen Verknüpfungen).
+                
+            \item
+                In \cref{ch3:bsp:tensorvslimiten} betrachten wir Limiten in
+                $\Mod_\Z$, aber anhand der expliziten Darstellung wird klar,
+                dass wir für $\varprojlim_{n\in\N} \txtZQuot{p^n}$ dieselbe
+                unterliegende Menge in $\Ring$ und $\Mod_\Z$ erhalten (bzw.
+                sogar dieselbe zugrunde liegende abelsche Gruppe) und diese 
+                nur mit unterschiedlichen Verknüpfungen ausgestattet ist.
+        \end{itemize}
+    \end{thBemerkung}
+\end{thBeispiel}
+
+\begin{thErinnerung}[Limes als Funktor]
+    Sei $\catA$ eine vollständige Kategorie und $I$ eine kleine Kategorie.
+    Wir fixieren für alle $I$-Diagramme in $\catA$ einen fest gewählten Limes.
+    Dann ist $\lim_I$ ein Funktor von der Diagrammkategorie~$\catA^I$ nach
+    $\catA$. Sind $D$ und $\bar D$ zwei $I$-Diagramm in $\catA$ und
+    $\eta\colon D\nattrafoto \bar D$ eine natürliche Transformation,
+    so ist $\lim_I\eta$ der (eindeutige) Morphismus $\lim_I D\to\lim_I\bar D$,
+    der das Diagramm in \cref{ch3:fig:limesalsfunktor} zum Kommutieren bringt.
+    %
+    \begin{figure}
+        \centering
+        \begin{equation*}
+                \xymatrix{
+                    &        \ar@/_1.5pc/[ddl]_{\eta_i\after p_i} 
+                    \lim_I D \ar@/^1.5pc/[ddr]^{\eta_j\after p_j} 
+                    \ar@{-->}[d]^(.57){\lim_I\eta} &
+                    \\
+                    & \ar[dl]_(.4){\bar p_i} \lim_I\bar D 
+                      \ar[dr]^(.4){\bar p_j} &
+                    \\
+                    \bar D(i) \ar[rr]^{\bar D(h)}
+                    \ar@{}@<-16pt>[rr]|-{i \xrightarrow[\text{in $I$}]{h} j}
+                    & & \bar D(j)
+                }
+        \end{equation*}
+        \caption{Limes als Funktor, wobei $\eta\colon D\nattrafoto\bar D$ eine
+            natürliche Transformation ist und $(\bar p_i)_{i\in I}$ bzw.
+            $(p_i)_{i\in I}$ die zu $\lim_I\bar D$ bzw. $\lim_I D$ gehörigen
+            Morphismen sind.}
+        \label{ch3:fig:limesalsfunktor}
+    \end{figure}
+\end{thErinnerung}
+
+\begin{thBeispiel}[Limes als rechtsadjungierter Funktor]
+    \label{ch3:bsp:limesrechtsadjungiert}
+    %
+    Sei $\catA$ eine vollständige Kategorie und $I$ eine kleine Kategorie.
+    Wir fixieren für alle $I$-Diagramme in $\catA$ einen fest gewählten Limes.
+    Dann ist $\lim_I$ rechtsadjungiert zum Diagonalfunktor~$\Delta^I$
+    \pcref{ch3:def:diagonalfunktor}, d.\,h. es gilt
+    \[ \Delta^I \leftadjoint \lim\nolimits_I  . \]
+\end{thBeispiel}
+
+\begin{proof}
+    \let\origlim=\lim
+    \renewcommand{\lim}{\origlim\nolimits}
+    %
+    \begin{figure}
+        \centering
+        \begin{equation*}
+                \xymatrix{
+                    & \ar@/_1.5pc/[ddl]_{\eta_i} 
+                    A \ar@/^1.5pc/[ddr]^{\eta_j} 
+                    \ar@{-->}[d]_(.57){\exists!}^(.57){g_D^A(\eta)} &
+                    \\
+                    & \ar[dl]_(.4){p_i} \lim_I D 
+                      \ar[dr]^(.4){p_j} &
+                    \\
+                    \bar D(i) \ar[rr]^{D(h)}
+                    \ar@{}@<-16pt>[rr]|-{i \xrightarrow[\text{in $I$}]{h} j}
+                    & & \bar D(j)
+                }
+        \end{equation*}
+        \caption{Zuordnung $\catA^I(\Delta^I A, D) \to \catA(A,\lim_I D)$ im
+            Beweis von \cref{ch3:bsp:limesrechtsadjungiert}}
+        \label{ch3:fig:nattrafozumorphismus}
+    \end{figure}
+    %
+    Sei $A\in\catA$ und $D\in\catA^I$ mit Limes $\bigl(\lim_I D,(p_i)_{i\in I}\bigr)$.
+    Wir überlegen uns zunächst, dass tatsächlich
+    \[ \catA^I(\Delta^I A, D) \cong \catA(A,\lim_I D) \]
+    gilt. Sei $\eta\in\catA^I(\Delta^I A, D)$, d.\,h. $\eta$ ist eine natürliche
+    Transformation $\Delta^I_A\nattrafoto D$. Wir hatten uns schon überlegt,
+    dass $(A,\eta)$ damit gerade ein Kegel über $D$ ist, so dass wir aus der
+    universellen Eigenschaft des Limes einen eindeutigen Morphismus
+    $g_D^A(\eta)\colon A\to \lim_I D$ bekommen (siehe
+    \cref{ch3:fig:nattrafozumorphismus}). Ist umgekehrt $g\colon A\to \lim_I D$
+    ein Morphismus in $\catA$, so definiert $(p_i\after g)_{i\in I}$ eine
+    natürliche Transformation $\Delta^I_A \nattrafoto D$. Wie eben erhalten wir
+    zu dieser einen eindeutigen Morphismus  $\tilde g\colon A\to\lim_I D$ und
+    wegen der Eindeutigkeit in der universellen Eigenschaft des Limes muss dann
+    schon $g=\tilde g$ gelten. Damit haben wir gezeigt, dass
+    \[ \catA^I(\Delta^I A, D) \overset{g_D^A}\longto \catA(A,\lim_I D) \]
+    eine Bijektion ist. Es bleibt also zu zeigen, dass dies auch natürlich in
+    $A$ und $D$ passiert.\footnote{Man sieht leicht, dass es zu unserer
+        Definition äquivalent ist, die Natürlichkeit in jeder Variable einzeln
+        zu prüfen. (Siehe auch Youcis\cite{www:an:youcis:productcat2}.)%
+    }
+    Dies wollen wir im Folgenden einmal direkt nachrechnen.
+    
+    \begin{description}
+        \item[Natürlichkeit in \boldmath$A$]\hfill\\
+            Seien $B$ und $A$ Objekte in $\catA$, $f\in\catA(B,A)$ (Achtung,
+            Kontravarianz) und $D\in\catA^I$ mit Limes $\bigl(\lim_I
+            D,(p_i)_{i\in I}\bigr)$. Weil $D$ konstant ist, schreiben wir
+            einfach $g^A \defeq g_D^A$ und $g^B \defeq g_D^B$.
+            Wir haben zu zeigen, dass das linke Diagramm in
+            \cref{ch3:fig:limrechtsadjdiagramme} kommutiert.  Sei dazu
+            $\eta\in\catA^I(\Delta^I A, D)$. Dann gilt (als Morphismen
+            $B\to\lim_I D$ in $\catA$)
+            \begin{align*}
+                \bigl(f^* \after g^A\bigr)(\eta)
+                &= f^*\bigl( g^A(\eta) \bigr)
+                 = g^A(\eta) \circ f
+                \qquad\text{und}\\[0.5ex]
+                \bigl(g^B \circ (\Delta^I f)^*\bigr)(\eta)
+                &= g^B\bigl( \eta \after (\Delta^I f) \bigr)
+            . \end{align*}
+            Für alle $i\in I$ erhalten wir
+            \begin{align*}
+                p_i\after g^A(\eta)\after f 
+                &= \eta_i\after f
+                \qquad\text{und}\\[0.5ex]
+                p_i\after \bigl(g^B\bigl( \eta \after (\Delta^I f) \bigr)\bigr)
+                &= \bigl( \eta \after (\Delta^I f)\bigr)_i
+                 = \eta_i \after f
+            , \end{align*}
+            weswegen nach der universellen Eigenschaft von $\lim_I D$
+            schon 
+            \[ \bigl(f^* \after g^A\bigr)(\eta) 
+                = \bigl(g^B \circ (\Delta^I f)^*\bigr)(\eta)
+            \]
+            gelten muss. Da $\eta$ beliebig war, folgt
+            \[ f^* \after g^A = g^B \circ (\Delta^I f)^* , \]
+            und gerade das wollten wir zeigen.
+            
+        \item[Natürlichkeit in \boldmath$D$]\hfill\\
+            Seien $D,\bar D\in\catA^I$, $\eta\in\catA^I(D,\bar D)$ und
+            $A\in\catA$. Seien $\bigl(\lim_I D,(p_i)_{i\in I}\bigr)$ und 
+            $\bigl(\lim_I \bar D,(\bar p_i)_{i\in I}\bigr)$ die Limiten von 
+            $D$ bzw. $\bar D$ über $I$. Da hier $A$ konstant ist, schreiben wir
+            nur $g_D \defeq g_D^A$ und $g_{\bar D} \defeq g_{\bar D}^A$.
+            Nun haben wir zu zeigen, dass das rechte Diagramm in
+            \cref{ch3:fig:limrechtsadjdiagramme} kommutiert.  Sei dazu
+            $\alpha\in\catA^I(\Delta^I A, D)$. Dann gilt (als Morphismen
+            $A\to\lim_I\bar D$ in $\catA$)
+            \begin{align*}
+                \bigl((\lim_I\eta)_\ast \after g_D \bigr)(\alpha)
+                &= (\lim_I\eta)_\ast \bigl( g_D(\alpha) \bigr)
+                 = (\lim_I\eta) \after g_D(\alpha)
+                \qquad\text{und}\\[0.5ex]
+                \bigl(g_{\bar D}\after\eta_\ast\bigr)(\alpha)
+                &= g_{\bar D}\bigl( \eta_\ast(\alpha) \bigr)
+                 = g_{\bar D}(\eta\after\alpha)
+            . \end{align*}
+            Für alle $i\in I$ erhalten wir
+            \begin{align*}
+                \bar p_i \after (\lim_I\eta) \after \bigl(g_D(\alpha)\bigr)
+                &= \eta_i \after p_i \after \bigl(g_D(\alpha)\bigr)
+                 = \eta_i \after \alpha_i
+                \qquad\text{und}\\[0.5ex]
+                \bar p_i \after \bigl(g_{\bar D}(\eta\after\alpha)\bigr)
+                &= (\eta\after\alpha)_i = \eta_i\after\alpha_i
+            , \end{align*}
+            weswegen nach der universellen Eigenschaft von $\lim_I\bar D$
+            schon
+            \[ \bigl((\lim_I\eta)_\ast \after g_D \bigr)(\alpha)
+                = \bigl(g_{\bar D}\after\eta_\ast\bigr)(\alpha)
+            \]
+            gelten muss. Da $\alpha$ beliebig war, folgt
+            \[ (\lim_I\eta)_\ast \after g_D = g_{\bar D}\after\eta_\ast , \]
+            und das wollten wir zeigen.
+    \end{description}
+    Also ist $g_D^A$ tatsächlich bijektiv und natürlich in $A$ und $D$ und damit
+    ist alles gezeigt.
+    \\
+    %
+    \begin{figure}
+        \centering
+        \begin{equation*}
+            \begin{gathered}
+                \xymatrix{
+                    \catA^I(\Delta^I A, D) \ar[r]^{g^A} \ar[d]^{(\Delta^I f)^*} &
+                    \catA(A, \lim_I D) \ar[d]_{f^*}
+                    \\
+                    \catA^I(\Delta^I B, D) \ar[r]_{g^B} & \catA(B, \lim_I D)
+                }
+            \end{gathered}
+            %
+            \hspace{2cm}
+            %
+            \begin{gathered}
+                \xymatrix{
+                    \catA^I(\Delta^I A, D) \ar[r]^{g_D} \ar[d]^{\eta_\ast} &
+                    \catA(A, \lim_I D) \ar[d]_{(\lim_I\eta)_\ast}
+                    \\
+                    \catA^I(\Delta^I A, \bar D) \ar[r]_{g_{\bar D}} &
+                    \catA(A, \lim_I\bar D)
+                }
+            \end{gathered}
+        \end{equation*}
+        \caption{Diagramme, deren Kommutativität im Beweis von
+            \cref{ch3:bsp:limesrechtsadjungiert} zum Nachweis der Natürlichkeit
+            gezeigt wird}
+        \label{ch3:fig:limrechtsadjdiagramme}
+    \end{figure}
+\end{proof}
+
+\begin{thBemerkung}\hfill
+    \begin{itemize}
+        \item
+            Dual kann man zeigen, dass man \enquote{Kolimesbildung}
+            als Funktor auffassen kann und dass dieser linksadjungiert
+            zum Diagonalfunktor ist.
+            
+        \item
+            Wir kennen nun einen zweiten Beweis, dass in vollständigen
+            Kategorien Limiten mit Limiten vertauschen, denn wir haben
+            soeben gezeigt, dass man \enquote{Limesbildung} als
+            rechtsadjungierten Funktor auffasen kann und als solcher
+            vertauscht dieser nach \cref{ch3:rapl} mit Limiten.
+    \end{itemize}
+\end{thBemerkung}
